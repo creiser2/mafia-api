@@ -20,6 +20,19 @@ class LobbiesController < ApplicationController
     end
   end
 
+  #Check to see if the lobby name is available amongst all of the lobby names
+  def checkAvail
+    lobbies = Lobby.all
+    lobbyNames = lobbies.map do |lobby|
+      lobby.name
+    end
+    avail = !lobbyNames.include?(params[:name])
+    if avail
+      render json: {availability: true}
+    else
+      render json: {availability: false}
+    end
+  end
 
   private
 
