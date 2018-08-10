@@ -14,10 +14,14 @@ class LobbiesController < ApplicationController
   def create
     #broadcasting out with lobby id so that the channel is unique
     lobby = Lobby.new(lobby_params)
+
     #the second argument here is what is passed via params
     if lobby.save
       ActionCable.server.broadcast("lobbies_#{lobby.id}", lobby: lobby)
+      serialized_data = ActiveModelSerializers::Adapter::Json.new(LobbySerializer.new(lobby))
     end
+
+    render json: serialized_data
   end
 
   #Check to see if the lobby name is available amongst all of the lobby names
