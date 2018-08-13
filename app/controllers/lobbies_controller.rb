@@ -37,6 +37,21 @@ class LobbiesController < ApplicationController
     end
   end
 
+  def joinLobby
+    lobbies = Lobby.all
+    lobby = lobbies.detect do |lobby|
+      lobby.name == lobby_params[:name]
+    end
+
+    #user has correct name and password for lobby, let them in
+    if lobby_params[:password] == lobby.password
+      render json: {password_correct: true, lobby: lobby}
+    #user does not have correct password
+    else
+      render json: {password_correct: false}
+    end
+  end
+
   private
 
   def lobby_params

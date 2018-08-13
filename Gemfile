@@ -18,7 +18,7 @@ gem 'redis', '~> 4.0'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'pry'
 # Use Serializer
 gem 'active_model_serializers', '~> 0.10.0'
 
