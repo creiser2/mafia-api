@@ -4,7 +4,6 @@ class LobbiesChannel < ApplicationCable::Channel
     #find created lobby passed from lobby controller and stream for that particular lobby
     @lobby = Lobby.find(params[:lobby_id])
     stream_for @lobby
-    # self.connection.connection_identifier =
   end
 
   def unsubscribed

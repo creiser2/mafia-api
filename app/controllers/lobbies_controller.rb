@@ -52,9 +52,25 @@ class LobbiesController < ApplicationController
     end
   end
 
+  def show
+    lobby = Lobby.find(params[:id])
+    serialized_data = ActiveModelSerializers::Adapter::Json.new(LobbySerializer.new(lobby))
+
+    if lobby
+      render json: {data: serialized_data}
+    else
+      render json: {response: "no lobby data"}
+    end
+  end
+
+  def startGame
+    @lobby = Lobby.find(lobby_params[:id])
+    LobbiesChannel.broadcast_to(@lobby, {startGame: true})
+  end
+
   private
 
   def lobby_params
-    params.require(:lobby).permit(:name, :password)
+    params.require(:lobby).permit(:name, :password, :id)
   end
 end

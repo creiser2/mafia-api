@@ -4,8 +4,7 @@ module ApplicationCable
   end
 
   def connect
-    byebug
-    self.current_user = find_verified_user
+    self.current_user = User.find(params[:user_id])
   end
 
   private

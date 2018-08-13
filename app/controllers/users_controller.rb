@@ -14,11 +14,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.update_attributes(role: params[:role])
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :lobby_id)
+    params.require(:user).permit(:username, :lobby_id, :alive, :role)
   end
 end
