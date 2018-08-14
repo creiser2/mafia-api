@@ -7,10 +7,15 @@ class LobbiesChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
+
     # Any cleanup needed when channel is unsubscribed
-    @user = User.find(params[:user_id]).destroy
     @lobby = Lobby.find(params[:lobby_id])
-    @users = @lobby.users
-    LobbiesChannel.broadcast_to(@lobby, {type: "DC_USER", user: @user, updated_users: @users})
+    if @lobby.protected
+      LobbiesChannel.broadcast_to(@lobby, {type: "PROTECTED"})
+    else
+      @user = User.find(params[:user_id]).destroy
+      @users = @lobby.users
+      LobbiesChannel.broadcast_to(@lobby, {type: "DC_USER", user: @user, updated_users: @users})
+    end
   end
 end

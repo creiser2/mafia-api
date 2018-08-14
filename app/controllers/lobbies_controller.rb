@@ -23,6 +23,13 @@ class LobbiesController < ApplicationController
     render json: serialized_data
   end
 
+  #used to update the lobby protection settings
+  def update
+    @lobby = Lobby.find(params[:id])
+    @lobby.update_attributes(protected: params[:protected])
+    render json: {protection: params[:protected]}
+  end
+
   #Check to see if the lobby name is available amongst all of the lobby names
   def checkAvail
     lobbies = Lobby.all
@@ -81,7 +88,6 @@ class LobbiesController < ApplicationController
     mafiaExists = @users.any? do |user|
       user.role == "mafia"
     end
-    byebug
     render json: {response: mafiaExists}
   end
 
@@ -91,6 +97,6 @@ class LobbiesController < ApplicationController
   private
 
   def lobby_params
-    params.require(:lobby).permit(:name, :password, :id)
+    params.require(:lobby).permit(:name, :password, :id, :protected)
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :lobbies, only: [:index, :create, :destroy, :show]
+  resources :lobbies, only: [:index, :create, :update, :destroy, :show]
   resources :users, only: [:create, :update, :destroy]
   post '/available' => 'lobbies#checkAvail'
   post '/joinlobby' => 'lobbies#joinLobby'
