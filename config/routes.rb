@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   post '/startgame' => 'lobbies#startGame'
   post '/pickmafia' => 'lobbies#pickMafia'
   post '/disconnect' => 'lobbies#disconnect'
+  post '/mafia-exists' => 'lobbes#mafiaExists'
   mount ActionCable.server => '/cable'
 end

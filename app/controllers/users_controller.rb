@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user
       #broadcast to all subs the new user that has jo
-      LobbiesChannel.broadcast_to(@lobby, {lobby: @lobby, users: @lobby.users})
+      LobbiesChannel.broadcast_to(@lobby, {type: "CONNECT_USER", lobby: @lobby, users: @lobby.users})
     end
   end
 

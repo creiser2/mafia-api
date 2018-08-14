@@ -65,17 +65,27 @@ class LobbiesController < ApplicationController
 
   def startGame
     @lobby = Lobby.find(lobby_params[:id])
-    LobbiesChannel.broadcast_to(@lobby, {startGame: true})
+    LobbiesChannel.broadcast_to(@lobby, {type: "START_GAME", startGame: true})
   end
 
   def pickMafia
     @lobby = Lobby.find(params[:lobby_id])
     @mafia = @lobby.users.find(params[:mafia_id])
+    @mafia.update_attributes(role: "mafia")
     LobbiesChannel.broadcast_to(@lobby, {type: "mafia_selection", mafia: @mafia})
   end
 
+  def mafiaExists
+    @lobby = Lobby.find(params[:lobby_id])
+    @users = @lobby.users
+    mafiaExists = @users.any? do |user|
+      user.role == "mafia"
+    end
+    byebug
+    render json: {response: mafiaExists}
+  end
+
   def disconnect
-    
   end
 
   private
