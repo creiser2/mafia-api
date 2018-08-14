@@ -68,6 +68,16 @@ class LobbiesController < ApplicationController
     LobbiesChannel.broadcast_to(@lobby, {startGame: true})
   end
 
+  def pickMafia
+    @lobby = Lobby.find(params[:lobby_id])
+    @mafia = @lobby.users.find(params[:mafia_id])
+    LobbiesChannel.broadcast_to(@lobby, {type: "mafia_selection", mafia: @mafia})
+  end
+
+  def disconnect
+    
+  end
+
   private
 
   def lobby_params

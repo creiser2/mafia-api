@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   post '/available' => 'lobbies#checkAvail'
   post '/joinlobby' => 'lobbies#joinLobby'
   post '/startgame' => 'lobbies#startGame'
+  post '/pickmafia' => 'lobbies#pickMafia'
+  post '/disconnect' => 'lobbies#disconnect'
   mount ActionCable.server => '/cable'
 end
