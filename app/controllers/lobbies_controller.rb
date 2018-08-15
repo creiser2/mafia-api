@@ -91,6 +91,12 @@ class LobbiesController < ApplicationController
     render json: {response: mafiaExists}
   end
 
+  def killVictim
+    @lobby = Lobby.find(params[:lobby_id])
+    @user = @lobby.users.find(params[:victim_id])
+    LobbiesChannel.broadcast_to(@lobby, {type: "KILL", victim: @user})
+  end
+
   def disconnect
   end
 
