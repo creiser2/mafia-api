@@ -97,6 +97,12 @@ class LobbiesController < ApplicationController
     LobbiesChannel.broadcast_to(@lobby, {type: "KILL", victim: @user})
   end
 
+  def castVote
+    @lobby = Lobby.find(params[:lobby_id])
+    @user = @lobby.users.find(params[:recipient_id])
+    LobbiesChannel.broadcast_to(@lobby, {type: "CAST_VOTE", voter_id: params[:voter_id], recipient: @user})
+  end
+
   def disconnect
   end
 

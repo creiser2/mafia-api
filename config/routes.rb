@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   post '/disconnect' => 'lobbies#disconnect'
   post '/mafia-exists' => 'lobbes#mafiaExists'
   post '/killvictim' => 'lobbies#killVictim'
+  post '/castvote' => 'lobbies#castVote'
   mount ActionCable.server => '/cable'
 end
