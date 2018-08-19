@@ -94,7 +94,8 @@ class LobbiesController < ApplicationController
   def killVictim
     @lobby = Lobby.find(params[:lobby_id])
     @user = @lobby.users.find(params[:victim_id])
-    LobbiesChannel.broadcast_to(@lobby, {type: "KILL", victim: @user})
+    LobbiesChannel.broadcast_to(@lobby, {type: "KILL", victim: @user, turn: params[:turn]})
+    render json: {response: @user}
   end
 
   def castVote
