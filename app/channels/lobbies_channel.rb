@@ -14,6 +14,7 @@ class LobbiesChannel < ApplicationCable::Channel
     else
       @user = User.find(params[:user_id]).destroy
       @users = @lobby.users
+      #if there are no users left in the lobby, completely destroy it
       if @users.length === 0
         @lobby.destroy
       end
