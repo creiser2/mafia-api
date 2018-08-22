@@ -120,7 +120,7 @@ class LobbiesController < ApplicationController
   end
 
   def stories(victim)
-    ["the mafioso cut #{victim}'s brakelights out", "#{victim} drank poisoned tea served to him by the mafioso 💊💊", "#{victim} was shot by the mafioso with his own 🔫", "☠️ #{victim} was Presumed dead of old age ☠️", "#{victim}'s flight to #{getRandomPlace} never landed, but the reason why is still unknown 🛫❌❌❌🛬", "#{victim} died peacefully in his sleep of a sledgehammer 🔨🔨"].sample
+    ["the mafioso cut #{victim}'s brakelines out", "#{victim} drank poisoned tea served to him by the mafioso 💊💊", "#{victim} was shot by the mafioso with his own 🔫", "☠️ #{victim} was Presumed dead of old age ☠️", "#{victim}'s flight to #{getRandomPlace} never landed, but the reason why is still unknown 🛫❌❌❌🛬", "#{victim} died peacefully in his sleep of a sledgehammer 🔨🔨"].sample
   end
 
   def getRandomPlace
