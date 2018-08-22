@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post '/mafia-exists' => 'lobbes#mafiaExists'
   post '/killvictim' => 'lobbies#killVictim'
   post '/castvote' => 'lobbies#castVote'
+  post '/get-random-mafia-kill-story' => 'lobbies#getRandomMafiaKillStory'
   mount ActionCable.server => '/cable'
 end
