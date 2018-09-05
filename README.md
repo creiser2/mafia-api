@@ -1,2 +1,2 @@
 # README
-Run rails s to start server
+Run rails s to start server.
