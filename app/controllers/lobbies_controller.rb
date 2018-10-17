@@ -7,6 +7,7 @@ class LobbiesController < ApplicationController
       ActiveModelSerializers::Adapter::Json.new(
       LobbySerializer.new(lobby)
     )}
+    puts serialized_data
     render json: serialized_data
   end
 
