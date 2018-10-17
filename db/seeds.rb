@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+firstLob = Lobbies.create(name: "seed-lobby", password: "123", protected: true)
+
+firstUser = User.create(username: "Tony", lobby_id: firstLob.id, alive: true, role: "mafia")
