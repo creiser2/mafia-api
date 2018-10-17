@@ -8,7 +8,7 @@ Rails.application.configure do
 
   #deployment stuff
   config.web_socket_server_url = "wss://mafia-api.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = [ /http:\/\/localhost:*/ ]
+  config.action_cable.allowed_request_origins = ['https://mafia-api.herokuapp.com']
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
