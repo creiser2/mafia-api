@@ -4,11 +4,11 @@ class LobbiesController < ApplicationController
   def index
     lobbies = Lobby.all
 
-    # serialized_data = lobbies.map { |lobby|
-    #   ActiveModelSerializers::Adapter::Json.new(
-    #   LobbySerializer.new(lobby)
-    # )}
-    render json: lobbies
+    serialized_data = lobbies.map { |lobby|
+      ActiveModelSerializers::Adapter::Json.new(
+      LobbySerializer.new(lobby)
+    )}
+    render json: serialized_data
   end
 
   #create a new lobby
