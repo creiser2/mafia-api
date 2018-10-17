@@ -3,12 +3,12 @@ class LobbiesController < ApplicationController
   #render a get for all lobbies
   def index
     lobbies = Lobby.all
-    serialized_data = lobbies.map { |lobby|
-      ActiveModelSerializers::Adapter::Json.new(
-      LobbySerializer.new(lobby)
-    )}
-    puts serialized_data
-    render json: serialized_data
+
+    # serialized_data = lobbies.map { |lobby|
+    #   ActiveModelSerializers::Adapter::Json.new(
+    #   LobbySerializer.new(lobby)
+    # )}
+    render json: lobbies
   end
 
   #create a new lobby
